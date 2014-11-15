@@ -159,7 +159,7 @@ public class Calculator {
 					}
 					
 					//Percentage Armor Reduction
-					float par = 0;
+					float par = 1;
 					if (parInput < 1 && parInput > 0)
 					{
 						par = 1 - parInput;
@@ -173,8 +173,16 @@ public class Calculator {
 					System.out.println("Armor after PAR: "+ currentArmor);
 					
 					//Percentage Armor Penetration
-					float pap;
-					pap = 1 - papInput;
+					float pap = 1;
+					if (papInput < 1 && papInput > 0)
+					{
+						pap = 1 - papInput;
+					}
+					else if (papInput < 100 && papInput > 1)
+					{
+						pap = (100 - papInput)/100;
+					}
+					
 					currentArmor = currentArmor*pap;
 					System.out.println("Armor after PAP: " + currentArmor);
 					
