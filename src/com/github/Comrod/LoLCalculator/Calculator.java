@@ -2,7 +2,6 @@ package com.github.Comrod.LoLCalculator;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -25,13 +24,13 @@ public class Calculator {
 	final JPanel panelBot = new JPanel (new BorderLayout());
 	
 	//AD Label
-	JLabel adLbl = new JLabel("Enter AD");
+	JLabel adLbl = new JLabel("Enter Damage");
 	JLabel armorLbl = new JLabel("Enter Armor");
 	JLabel farLbl = new JLabel("Enter Flat Armor Reduction");
 	JLabel parLbl = new JLabel("Enter Percentage Armor Reduction");
 	JLabel papLbl = new JLabel("Enter Percentage Armor Penetration");
 	JLabel fapLbl = new JLabel("Enter Flat Armor Penetration");
-	JLabel finalDmg = new JLabel("Final Damage");
+	JLabel finalDmg = new JLabel("Damage Delivered:");
 	
 	
 	//AD Input
@@ -160,8 +159,16 @@ public class Calculator {
 					}
 					
 					//Percentage Armor Reduction
-					float par;
-					par = 1 - parInput;
+					float par = 0;
+					if (parInput < 1 && parInput > 0)
+					{
+						par = 1 - parInput;
+					}
+					else if (parInput < 100 && parInput > 1)
+					{
+						par = (100 - parInput)/100;
+					}
+					
 					currentArmor = currentArmor*par;
 					System.out.println("Armor after PAR: "+ currentArmor);
 					
